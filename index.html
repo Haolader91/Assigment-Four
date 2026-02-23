@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Application</title>
+
         <!-- daisy + tailwindcss -->
      <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -17,7 +18,55 @@
 
 </head>
 <body>
-    <h2>Hello Check</h2>
+    <!-- header section -->
+    <header class="container mx-auto my-[20px]">
+        <h1 class="text-2xl font-bold mb-6">Job Application Tracker</h1>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="card bg-base-100 shadow">
+                <div class="card-body">
+                <h2>Total</h2>
+                <p id="total-count" class="text-2xl font-bold">0</p>
+                </div>
+            </div>
+
+            <div class="card bg-base-100 shadow">
+                <div class="card-body">
+                <h2>Interview</h2>
+                <p id="interview-count" class="text-2xl font-bold text-green-600">0</p>
+                </div>
+            </div>
+
+            <div class="card bg-base-100 shadow">
+                <div class="card-body">
+                <h2>Rejected</h2>
+                <p id="rejected-count" class="text-2xl font-bold text-red-500">0</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- main section -->
+    <main class="container mx-auto">
+
+        <!-- Available Job Part -->
+        <div class="flex justify-between items-center mt-10">
+            <h2 class="text-xl font-bold">Available Jobs</h2>
+            <p id="available-count" class="font-semibold">0 Jobs</p>
+        </div>
+
+        <!-- tab button part -->
+        <div class="flex gap-4 mt-4">
+            <button class="btn btn-primary tab-btn" id="all">All</button>
+            <button class="btn tab-btn" id="interview">Interview</button>
+            <button class="btn tab-btn" id="rejected">Rejected</button>
+        </div>
+
+        <!-- Job Card Container Part -->
+        <div id="job-container" class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6"></div>
+
+    </main>
+
+
 
     <script src="./script/script.js"></script>
 </body>
