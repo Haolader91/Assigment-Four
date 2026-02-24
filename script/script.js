@@ -189,7 +189,16 @@ function cardBtnClick(id, newStatus) {
   //
   JobsHandler(activeBtn);
 }
+// (delete icons click = card delete) section
+function deleteJob(id) {
+  const index = jobsCard.findIndex((j) => j.id === id);
+  jobsCard.splice(index, 1);
 
+  //
+  const active = document.querySelector(".tab-btn.btn-primary").id;
+
+  JobsHandler(active);
+}
 //
 // even handler section part
 document.querySelectorAll(".tab-btn").forEach((btn) => {
