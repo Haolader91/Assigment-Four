@@ -152,4 +152,22 @@ function JobsHandler(tabAll = "all") {
 
     container.appendChild(cards);
   });
+
+  updateCounts();
 }
+// counting section
+function updateCounts() {
+  //
+  document.getElementById("total-count").innerText = jobsCard.length;
+  //
+  document.getElementById("interview-count").innerText = jobsCard.filter(
+    (j) => j.status === "interview",
+  ).length;
+
+  //
+  document.getElementById("rejected-count").innerText = jobsCard.filter(
+    (j) => j.status === "rejected",
+  ).length;
+}
+
+JobsHandler();
