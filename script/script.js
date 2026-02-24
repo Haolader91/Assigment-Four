@@ -169,6 +169,28 @@ function updateCounts() {
     (j) => j.status === "rejected",
   ).length;
 }
+//----------------------------------------------------------
+// btn click kaj section
+// interview and rejected button ar click
+function cardBtnClick(id, newStatus) {
+  //
+  const job = jobsCard.find((card) => card.id === id);
+
+  //
+  if (job.status === newStatus) {
+    job.status = "NOT APPLIED";
+  } else {
+    job.status = newStatus;
+  }
+
+  //
+  const activeBtn = document.querySelector(".tab-btn.btn-primary").id;
+
+  //
+  JobsHandler(activeBtn);
+}
+
+//
 // even handler section part
 document.querySelectorAll(".tab-btn").forEach((btn) => {
   btn.addEventListener("click", function () {
