@@ -28,7 +28,7 @@ const jobsCard = [
     position: "Data Visualization Specialist",
     location: "Boston, MA",
     type: "Full-time",
-    salary: " $125,000 - $165,000",
+    salary: "$125,000 - $165,000",
     status: "NOT APPLIED",
     description:
       "Transform complex data into compelling visualizations. Required skills: D3.js, React, and strong analytical thinking.",
@@ -61,7 +61,7 @@ const jobsCard = [
     position: "JavaScript Developer",
     location: "New York, NY",
     type: "Full-time",
-    salary: " $130,000 - $170,00",
+    salary: "$130,000 - $170,000",
     status: "NOT APPLIED",
     description:
       "Build enterprise applications with JavaScript and modern frameworks. We offer competitive compensation, health insurance, and professional development opportunities.",
@@ -89,3 +89,67 @@ const jobsCard = [
       "We are looking for an experienced Frontend Developer to build scalable web applications using React and TypeScript. You will work with a talented team on cutting-edge projects.",
   },
 ];
+
+// job-container section
+function JobsHandler(tabAll = "all") {
+  //
+  const container = document.getElementById("job-container");
+  container.innerHTML = "";
+  let jobCardContainer;
+  //
+  if (tabAll == "all") {
+    jobCardContainer = jobsCard;
+  } else {
+    jobCardContainer = jobsCard.filter((job) => job.status === tabAll);
+  }
+  //
+  document.getElementById("available-count").innerText =
+    jobCardContainer.length + " Jobs";
+
+  //
+  if (jobCardContainer.length === 0) {
+    container.innerHTML = `
+      <div class="col-span-full bg-base-200 text-center py-20">
+        <img src="./jobs.png" alt="" class="mx-auto">
+        <h2 class="text-xl font-bold">No jobs Available</h2>
+        <p class="text-gray-500">Please check again later.</p>
+      </div>
+    `;
+  }
+
+  //
+  jobCardContainer.forEach((job) => {
+    //
+    const cards = document.createElement("div");
+    cards.className =
+      "card bg-base-200 shadow-sm border border-gray-100 p-5 mb-4";
+    //
+    cards.innerHTML = `
+                <div class="flex justify-between items-start">
+                    <div class="space-y-3">
+                        <h2 class="text-xl font-bold">${job.companyName}</h2>
+                        <p>${job.position}</p>
+                        <p>${job.location} • ${job.type} • ${job.salary}</p>
+                        <button class="btn btn-sm bg-blue-500/20 text-black pointer-events-none inline-block w-[105px]">${job.status}</button>
+                        <p class="mt-2">${job.description}</p>
+                    </div>
+                    <button onclick="deleteJob(${job.id})" class="btn btn-sm btn-base-200 text-red-500">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+                <div class="mt-4 flex gap-2">
+                    <button class="btn btn-success btn-sm"
+                        onclick="cardBtnClick(${job.id}, 'interview')">
+                            Interview
+                    </button>
+
+                    <button class="btn btn-error btn-outline btn-sm"
+                        onclick="cardBtnClick(${job.id}, 'rejected')">
+                            Rejected
+                    </button>
+                </div>
+            `;
+
+    container.appendChild(cards);
+  });
+}
